@@ -1,0 +1,72 @@
+﻿<Window x:Class="Projekt_PR.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Mnożenie Macierzy" Height="700" Width="650"
+        Background="{StaticResource PrimaryBackground}"
+        Foreground="{StaticResource TextColor}">
+    <ScrollViewer>
+        <StackPanel Margin="20" HorizontalAlignment="Center" Cursor="">
+
+            <!-- SUWAK ROZMIARU -->
+            <TextBlock Text="Rozmiar macierzy:" Margin="0,0,0,5"/>
+            <Slider x:Name="MatrixSizeSlider"
+        Minimum="1"
+        Maximum="20"
+        Value="1"
+        TickFrequency="1"
+        IsSnapToTickEnabled="True"
+        Width="300"/>
+            <TextBlock Text="{Binding ElementName=MatrixSizeSlider, Path=Value, StringFormat='Wybrany rozmiar: {0} × {0}'}"
+           Margin="0,0,0,10"/>
+
+            <TextBlock Text="{Binding ElementName=MatrixSizeSlider, Path=Value, StringFormat='Wybrany rozmiar: {0} × {0}'}"
+                       Margin="0,0,0,10"/>
+
+            <Button Content="Generuj macierze" Click="GenerateMatrices_Click" Margin="0,0,0,15"/>
+
+            <!-- Macierz A -->
+            <TextBlock Text="Macierz A:" FontWeight="Bold" FontSize="16"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="[" FontSize="28" VerticalAlignment="Center"/>
+                <UniformGrid x:Name="MatrixAInputGrid" Columns="3" Rows="3" Margin="5"/>
+                <TextBlock Text="]" FontSize="28" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Macierz B -->
+            <TextBlock Text="Macierz B:" FontWeight="Bold" FontSize="16" Margin="0,20,0,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="[" FontSize="28" VerticalAlignment="Center"/>
+                <UniformGrid x:Name="MatrixBInputGrid" Columns="3" Rows="3" Margin="5"/>
+                <TextBlock Text="]" FontSize="28" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Wypełnij Losowo Przycisk-->
+            <Button Content="Wypełnij losowo" Click="FillRandom_Click" Margin="0,0,0,15"/>
+            
+            <!-- Mnożenie Parallel Przycisk-->
+            <Button Content="Mnożenie Parallel + (meta dane)" Click="ParallelMeta_Click" Margin="10"/>
+
+            <!-- Mnożenie Async Przycisk -->
+            <Button Content="Mnożenie macierzy (Async)" Click="Async_Click" Margin="20,20,20,5" Width="220" />
+
+            <!-- Mnożenie Synchroniczne Przycisk -->
+            <Button Content="Mnożenie macierzy Synchroniczne" Click="Sync_Click" Margin="20,20,20,5"/>
+
+
+            <!-- Pasek postępu -->
+            <ProgressBar x:Name="Progress" Height="20" Width="220"
+                         IsIndeterminate="True" Visibility="Collapsed" Margin="0,10,0,10"/>
+
+            <!-- Tekstowy wynik -->
+            <TextBlock x:Name="ResultText" Margin="0,10,0,10" FontSize="14" TextWrapping="Wrap" TextAlignment="Center"/>
+
+            <!-- Macierz Wynikowa -->
+            <TextBlock Text="Macierz wynikowa A × B = C:" FontWeight="Bold" FontSize="16" Margin="0,20,0,5"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="[" FontSize="28" VerticalAlignment="Center"/>
+                <UniformGrid x:Name="ResultOutputGrid" Margin="5"/>
+                <TextBlock Text="]" FontSize="28" VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Window>
